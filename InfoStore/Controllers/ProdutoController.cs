@@ -47,7 +47,7 @@ namespace InfoStore.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProdutoID,NomeProduto,CustoProduto,PrecoProduto")] Produto produto)
+        public ActionResult Create([Bind(Include = "ProdutoID,NomeProduto,CustoProduto,PrecoProduto,IDConfig")] Produto produto)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace InfoStore.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProdutoID,NomeProduto,CustoProduto,PrecoProduto")] Produto produto)
+        public ActionResult Edit([Bind(Include = "ProdutoID,NomeProduto,CustoProduto,PrecoProduto,IDConfig")] Produto produto)
         {
             if (ModelState.IsValid)
             {

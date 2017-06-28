@@ -150,6 +150,7 @@
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\CompraController.cs" />
     <Compile Include="Controllers\ConfigController.cs" />
+    <Compile Include="Controllers\FacturaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LojaController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
@@ -162,6 +163,7 @@
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Compra.cs" />
     <Compile Include="Models\Config.cs" />
+    <Compile Include="Models\Factura.cs" />
     <Compile Include="Models\Funcionario.cs" />
     <Compile Include="Models\Loja.cs" />
     <Compile Include="Models\Produto.cs" />
@@ -229,6 +231,11 @@
     <Content Include="Views\Compra\Details.cshtml" />
     <Content Include="Views\Compra\Edit.cshtml" />
     <Content Include="Views\Compra\Index.cshtml" />
+    <Content Include="Views\Factura\Create.cshtml" />
+    <Content Include="Views\Factura\Delete.cshtml" />
+    <Content Include="Views\Factura\Details.cshtml" />
+    <Content Include="Views\Factura\Edit.cshtml" />
+    <Content Include="Views\Factura\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

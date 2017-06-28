@@ -21,5 +21,7 @@ namespace InfoStore.DAL
         }
 
         public System.Data.Entity.DbSet<InfoStore.Models.Compra> Compras { get; set; }
+
+        public System.Data.Entity.DbSet<InfoStore.Models.Factura> Facturas { get; set; }
     }
 }

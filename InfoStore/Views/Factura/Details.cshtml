@@ -1,0 +1,58 @@
+﻿@model InfoStore.Models.Factura
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Factura</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Config.ConfigID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Config.ConfigID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Funcionario.NomeFuncionario)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Funcionario.NomeFuncionario)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Produto.NomeProduto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Produto.NomeProduto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quant_Prod)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quant_Prod)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quant_Config)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quant_Config)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FacturaID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
