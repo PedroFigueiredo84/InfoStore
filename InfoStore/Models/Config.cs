@@ -23,7 +23,7 @@ namespace InfoStore.Models
         //Custo dos produtos
 
         public decimal custoProdutos { get {
-                var query = Produtos.Where(Produto => Produto.IDConfig > ConfigID);
+                var query = Produtos.Where(Produto => Produto.IDConfig == ConfigID);
                 return query.Sum(o => o.CustoProduto); } }
 
 
@@ -31,7 +31,7 @@ namespace InfoStore.Models
         //Preço dos produtos
 
         public decimal precoProdutos { get {
-                var query1 = Produtos.Where(Produto => Produto.IDConfig > ConfigID);
+                var query1 = Produtos.Where(Produto => Produto.IDConfig == ConfigID);
                 return query1.Sum(o => o.PrecoProduto);
             }
         }

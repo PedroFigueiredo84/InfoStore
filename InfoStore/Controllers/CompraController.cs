@@ -41,6 +41,7 @@ namespace InfoStore.Controllers
         public ActionResult Create()
         {
             ViewBag.ProdutoID = new SelectList(db.Produtos, "ProdutoID", "NomeProduto");
+            ViewBag.CustoProduto = new SelectList(db.Produtos, "CustoProduto", "CustoUnitario");
             ViewBag.LojaID = new SelectList(db.Lojas, "LojaID", "Cidade");
             return View();
         }

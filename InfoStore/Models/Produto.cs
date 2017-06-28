@@ -23,6 +23,5 @@ namespace InfoStore.Models
         public virtual Config Config { get; set; }
 
 
-
     }
 }
