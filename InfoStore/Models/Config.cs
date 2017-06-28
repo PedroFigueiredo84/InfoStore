@@ -23,11 +23,19 @@ namespace InfoStore.Models
 
         //Custo dos produtos
 
-        public decimal custoProdutos { get { return ListaProdutos.Sum(o => o.CustoProduto); } }
+        public decimal custoProdutos { get {
+                var query = ListaProdutos.Where(Produto => Produto.IDConfig > ConfigID);
+                return query.Sum(o => o.CustoProduto); } }
 
+
+        
         //Preço dos produtos
 
-        public decimal precoProdutos { get { return ListaProdutos.Sum(o => o.PrecoProduto); } }
+        public decimal precoProdutos { get {
+                var query1 = ListaProdutos.Where(Produto => Produto.IDConfig > ConfigID);
+                return query1.Sum(o => o.PrecoProduto);
+            }
+        }
 
         //Preço Total
 
