@@ -50,7 +50,7 @@ namespace InfoStore.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CompraID,ProdutoID,Quant,CustoProduto,LojaID")] Compra compra)
+        public ActionResult Create([Bind(Include = "CompraID,Quant,LojaID,ProdutoID")] Compra compra)
         {
             if (ModelState.IsValid)
             {
@@ -59,7 +59,8 @@ namespace InfoStore.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ProdutoID = new SelectList(db.Produtos, "ProdutoID", "NomeProduto", compra.ProdutoID);
+            ViewBag.ProdutoID = new SelectList(db.Produtos, "ProdutoID", "NomeProduto");
+            ViewBag.LojaID = new SelectList(db.Lojas, "LojaID", "Cidade");
             return View(compra);
         }
 
@@ -76,8 +77,6 @@ namespace InfoStore.Controllers
                 return HttpNotFound();
             }
             ViewBag.ProdutoID = new SelectList(db.Produtos, "ProdutoID", "NomeProduto", compra.ProdutoID);
-            ViewBag.CustoProduto = new SelectList(db.Produtos, "ProdutoID", "NomeProduto", compra.ProdutoID);
-            ViewBag.LojaID = new SelectList(db.Lojas, "LojaID", "Cidade", compra.LojaID);
             return View(compra);
         }
 
@@ -86,7 +85,7 @@ namespace InfoStore.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CompraID,ProdutoID,Quant,CustoProduto,LojaID")] Compra compra)
+        public ActionResult Edit([Bind(Include = "CompraID,Quant,LojaID,ProdutoID")] Compra compra)
         {
             if (ModelState.IsValid)
             {
