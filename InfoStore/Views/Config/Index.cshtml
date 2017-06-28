@@ -1,0 +1,57 @@
+﻿@model IEnumerable<InfoStore.Models.Config>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ConfigID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.custoProdutos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precoProdutos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precototal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrecoConfig)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ConfigID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.custoProdutos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precoProdutos)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precototal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrecoConfig)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ConfigID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ConfigID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ConfigID })
+        </td>
+    </tr>
+}
+
+</table>

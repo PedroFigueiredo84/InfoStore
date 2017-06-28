@@ -13,6 +13,7 @@ namespace InfoStore.DAL
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Funcionario> Funcionarios { get; set; }
         public DbSet<Produto> Produtos { get; set; }
+        public DbSet<Config> Configs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

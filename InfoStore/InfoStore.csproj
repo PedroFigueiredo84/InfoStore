@@ -149,6 +149,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\CompraController.cs" />
+    <Compile Include="Controllers\ConfigController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LojaController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
@@ -223,6 +224,11 @@
     <Content Include="Views\Compra\Details.cshtml" />
     <Content Include="Views\Compra\Edit.cshtml" />
     <Content Include="Views\Compra\Index.cshtml" />
+    <Content Include="Views\Config\Create.cshtml" />
+    <Content Include="Views\Config\Delete.cshtml" />
+    <Content Include="Views\Config\Details.cshtml" />
+    <Content Include="Views\Config\Edit.cshtml" />
+    <Content Include="Views\Config\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
