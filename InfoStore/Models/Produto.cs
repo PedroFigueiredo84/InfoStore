@@ -17,10 +17,12 @@ namespace InfoStore.Models
         //Alternativa
         public decimal margemlucro { get {return PrecoProduto - CustoProduto;} }
 
+        // Usando essa convenção que você escolheu, a definição de chave estrangeira fica aqui
+        [ForeignKey("Config")]
         public int IDConfig { get; set; }
 
-        [ForeignKey("IDConfig")]
-        public virtual Config Config { get; set; }
+       
+        public virtual Config Config { get; set; } // aqui é só um navegador para a propriedade Config, isso nem é necessário para a relação funcionar
 
 
     }

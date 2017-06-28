@@ -45,10 +45,19 @@ namespace InfoStore.DAL
             funcionarios.ForEach(s => context.Funcionarios.Add(s));
             context.SaveChanges();
 
+            var config = new List<Config>()
+            {
+                new Config{ConfigID = 1, PrecoConfig = 50},
+                new Config{ConfigID = 2, PrecoConfig = 40},
+                new Config{ConfigID = 3, PrecoConfig = 10}
+            };
+            config.ForEach(c => context.Configs.Add(c));
+            context.SaveChanges();         
+
             var produtos = new List<Produto>
             {
-            new Produto{ProdutoID=1, NomeProduto="Teclado",CustoProduto=5, PrecoProduto=10, IDConfig=1},
-            new Produto{ProdutoID=2, NomeProduto="Monitor",CustoProduto=4, PrecoProduto=8, IDConfig=1},
+            new Produto{ProdutoID=1, NomeProduto="Teclado",CustoProduto=5, PrecoProduto=10, IDConfig=1}, // como você está definindo que a Config aqui é igual a 1 se não existe config?
+            new Produto{ProdutoID=2, NomeProduto="Monitor",CustoProduto=4, PrecoProduto=8, IDConfig=1}, // precisa antes fazer uma config, igual você fez com cliente e Loja
             new Produto{ProdutoID=3, NomeProduto="Rato",CustoProduto=3, PrecoProduto=6, IDConfig=2},
             new Produto{ProdutoID=4, NomeProduto="Scanner",CustoProduto=2, PrecoProduto=9, IDConfig=3},
             };

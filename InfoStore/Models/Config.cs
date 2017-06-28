@@ -20,7 +20,7 @@ namespace InfoStore.Models
 
         public Config()
         {
-            ListaProdutos = new List<Produto>();
+            Produtos = new List<Produto>();
         }
 
 
@@ -34,16 +34,7 @@ namespace InfoStore.Models
 
         public int CustoProduto { get; set; }
 
-        public virtual ICollection<Produto> ListaProdutos { get; set; }
-
-        protected override void OnModelBuilder(DbModelBuilder modelBuilder)
-        {
-            //one-to-many 
-            modelBuilder.Entity<Produto>()
-                        .HasRequired<Config>(s => s.Config)
-                        .WithMany(s => s.ListaProdutos); 
-
-        }
+        public virtual ICollection<Produto> Produtos { get; set; } // aqui é um navegador para acessar uma lista de produtos
     }
 
     

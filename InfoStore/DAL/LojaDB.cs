@@ -13,6 +13,8 @@ namespace InfoStore.DAL
         public DbSet<Cliente> Clientes { get; set; }
         public DbSet<Funcionario> Funcionarios { get; set; }
         public DbSet<Produto> Produtos { get; set; }
+        // nao existe DbSet de config.. como vamos acessar a config?
+        public DbSet<Config> Configs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
