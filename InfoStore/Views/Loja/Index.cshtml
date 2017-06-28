@@ -1,0 +1,33 @@
+﻿@model IEnumerable<InfoStore.Models.Loja>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lojas</h2>
+
+<p>
+    @Html.ActionLink("Criar Nova", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Cidade)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cidade)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.LojaID }) |
+            @Html.ActionLink("Detalhe", "Details", new { id=item.LojaID }) |
+            @Html.ActionLink("Apagar", "Delete", new { id=item.LojaID })
+        </td>
+    </tr>
+}
+
+</table>
