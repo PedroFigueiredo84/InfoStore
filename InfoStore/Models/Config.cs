@@ -1,20 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using InfoStore.Models;
+using System.Linq;
 
 namespace InfoStore.Models
 {
     public class Config
     {
         
-
-
         public int ConfigID { get; set; }
         
         //preço de configurar
         public decimal PrecoConfig { get; set; }
-        
-        //custo dos produtos da configuração
 
         // lista dos produtos
 
@@ -24,26 +21,20 @@ namespace InfoStore.Models
         }
 
 
+        //Custo dos produtos
+
+        public decimal custoProdutos { get { return ListaProdutos.Sum(o => o.CustoProduto); } }
+
         //Preço dos produtos
 
-        // public decimal precoProdutos { get { return ListaProdutos.Sum(o => o.PrecoProduto); } }
+        public decimal precoProdutos { get { return ListaProdutos.Sum(o => o.PrecoProduto); } }
 
         //Preço Total
 
-        // public decimal precototal { get { return precoProdutos - custoProdutos; } }
+        public decimal precototal { get { return precoProdutos - custoProdutos + PrecoConfig; } }
 
-        public int CustoProduto { get; set; }
 
         public virtual ICollection<Produto> ListaProdutos { get; set; }
-
-        protected override void OnModelBuilder(DbModelBuilder modelBuilder)
-        {
-            //one-to-many 
-            modelBuilder.Entity<Produto>()
-                        .HasRequired<Config>(s => s.Config)
-                        .WithMany(s => s.ListaProdutos); 
-
-        }
     }
 
     
