@@ -26,7 +26,7 @@
             @Html.DisplayFor(modelItem => item.NomeCliente)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.LojaID)
+            @Html.DisplayFor(modelItem => item.Loja.Cidade)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.ClienteID }) |

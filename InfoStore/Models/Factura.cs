@@ -11,8 +11,8 @@ namespace InfoStore.Models
     {
         public Factura()
         {
-            Produtos = new List<Produto>();
-            Configs = new List<Config>();
+            //produtos = new list<produto>();
+            //configs = new list<config>();
         }
 
         public int FacturaID { get; set; }
@@ -21,29 +21,38 @@ namespace InfoStore.Models
         public int FuncionarioID { get; set; }
 
         [ForeignKey("Produto")]
-        public int ProdutoID { get; set; }
+        public int? ProdutoID { get; set; }
 
         [ForeignKey("Config")]
-        public int ConfigID { get; set; }
+        public int? ConfigID { get; set; }
 
-        public int Quant_Prod { get; set; }
-        public int Quant_Config { get; set; }
+        public int? Quant_Prod { get; set; }
+        public int? Quant_Config { get; set; }
 
-        public decimal total_factura
+        public decimal? total_factura
         {
             get
             {
-                var query = Produtos.Where(Produto => Produto.ProdutoID == ProdutoID);
-                var subtotalProd = query.Sum(o => o.PrecoProduto);
-                var query2 = Configs.Where(Config => Config.ConfigID == ConfigID);
-                var subtotalConfig = Quant_Config * query2.Sum(o => o.precototal);
-                return subtotalConfig + subtotalProd;
+                decimal? subtotalProd = Quant_Prod * Produto?.PrecoProduto;
+                decimal? subtotalConfig = Quant_Config * Config?.precototal;
+                if (subtotalProd == null)
+                {
+                    return subtotalConfig;
+                }
+                else if (subtotalConfig == null)
+                {
+                    return subtotalProd;
+                }
+                else
+                {
+                    return subtotalConfig + subtotalProd;
+                }
             }
         }
 
 
-        public virtual ICollection<Config> Configs { get; set; }
-        public virtual ICollection<Produto> Produtos { get; set; }
+        //public virtual ICollection<Config> Configs { get; set; }
+        //public virtual ICollection<Produto> Produtos { get; set; }
         public virtual Produto Produto { get; set; }
         public virtual Config Config { get; set; }
         public virtual Funcionario Funcionario { get; set; }

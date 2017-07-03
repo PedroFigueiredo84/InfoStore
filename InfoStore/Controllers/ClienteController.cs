@@ -39,6 +39,7 @@ namespace InfoStore.Controllers
         // GET: Cliente/Create
         public ActionResult Create()
         {
+            ViewBag.LojaID = new SelectList(db.Lojas, "LojaID", "Cidade");
             return View();
         }
 

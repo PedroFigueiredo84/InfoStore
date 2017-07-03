@@ -5,6 +5,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Web.Mvc;
 using InfoStore.DAL;
 using InfoStore.Models;
@@ -18,6 +20,7 @@ namespace InfoStore.Controllers
         // GET: Factura
         public ActionResult Index()
         {
+
             var facturas = db.Facturas.Include(f => f.Config).Include(f => f.Funcionario).Include(f => f.Produto);
             return View(facturas.ToList());
         }
@@ -53,12 +56,23 @@ namespace InfoStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "FacturaID,FuncionarioID,ProdutoID,ConfigID,Quant_Prod,Quant_Config")] Factura factura)
         {
+
+            var Compras_produto = db.Compras.Where(Compra => Compra.ProdutoID == factura.ProdutoID);
+            var Stock_produto = Compras_produto.Sum(o => o.Quant);
+
+            if (factura.Quant_Prod >= Stock_produto)
+            {
+                
+                return RedirectToAction("Stockoff");
+            }
+
             if (ModelState.IsValid)
             {
                 db.Facturas.Add(factura);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
 
             ViewBag.ConfigID = new SelectList(db.Configs, "ConfigID", "ConfigID", factura.ConfigID);
             ViewBag.FuncionarioID = new SelectList(db.Funcionarios, "FuncionarioID", "NomeFuncionario", factura.FuncionarioID);
@@ -137,5 +151,9 @@ namespace InfoStore.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
+
+
     }
 }

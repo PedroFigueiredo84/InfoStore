@@ -24,16 +24,16 @@ namespace InfoStore.Models
         public int ProdutoID { get; set; }
 
         [ForeignKey("Produto")]
-        public decimal CustoProduto {
+        public decimal CustoProduto
+        {
             get
-            {  var query = Produtos.Where(Produto => Produto.ProdutoID == ProdutoID);
+            {
+                var query = Produtos.Where(Produto => Produto.ProdutoID == ProdutoID);
                 return query.Sum(o => o.CustoProduto);
             }
         }
 
-
         public virtual ICollection<Produto> Produtos { get; set; }
-        public virtual ICollection<Loja> Lojas { get; set; }
         public virtual Produto Produto { get; set; }
         public virtual Loja Loja { get; set; }
     }

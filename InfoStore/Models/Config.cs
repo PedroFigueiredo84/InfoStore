@@ -8,7 +8,7 @@ namespace InfoStore.Models
     public class Config
     {
         public int ConfigID { get; set; }
-        
+
         //preço de configurar
         public decimal PrecoConfig { get; set; }
 
@@ -22,15 +22,22 @@ namespace InfoStore.Models
 
         //Custo dos produtos
 
-        public decimal custoProdutos { get {
+        public decimal custoProdutos
+        {
+            get
+            {
                 var query = Produtos.Where(Produto => Produto.IDConfig == ConfigID);
-                return query.Sum(o => o.CustoProduto); } }
-
-
+                return query.Sum(o => o.CustoProduto);
+            }
+        }
         
-        //Preço dos produtos
 
-        public decimal precoProdutos { get {
+    //Preço dos produtos
+
+    public decimal precoProdutos
+        {
+            get
+            {
                 var query1 = Produtos.Where(Produto => Produto.IDConfig == ConfigID);
                 return query1.Sum(o => o.PrecoProduto);
             }
@@ -38,12 +45,12 @@ namespace InfoStore.Models
 
         //Preço Total
 
-        public decimal precototal { get { return precoProdutos - custoProdutos + PrecoConfig; } }
+        public decimal precototal { get { return precoProdutos + PrecoConfig; } }
 
 
         public virtual ICollection<Produto> Produtos { get; set; }
     }
 
-    
+
 
 }

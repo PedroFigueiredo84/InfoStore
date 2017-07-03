@@ -20,8 +20,15 @@
         <th>
             @Html.DisplayNameFor(model => model.LojaID)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Produto.CustoProduto)
+        </th>
+        <th>
+            @("Total")
+        </th>
         <th></th>
     </tr>
+
 
 @foreach (var item in Model) {
     <tr>
@@ -33,6 +40,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.LojaID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Produto.CustoProduto)
+        </td>
+        <td>
+            @(item.Produto.CustoProduto* item.Quant)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CompraID }) |

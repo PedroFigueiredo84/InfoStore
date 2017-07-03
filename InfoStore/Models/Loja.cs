@@ -13,7 +13,7 @@ namespace InfoStore.Models
         [StringLength(50, MinimumLength = 3)]
         public string Cidade { get; set; }
 
-        public virtual Cliente Cliente { get; set; }
-        public virtual Funcionario Funcionario { get; set; }
+        public virtual List<Funcionario> Funcionarios { get; set; }
+        public virtual List<Cliente> Cliente { get; set; }
     }
 }

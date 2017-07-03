@@ -13,16 +13,14 @@ namespace InfoStore.Models
         public decimal CustoProduto { get; set; }
         public decimal PrecoProduto { get; set; }
 
-
         //Alternativa
         public decimal margemlucro { get {return PrecoProduto - CustoProduto;} }
 
-        
+       
         [ForeignKey("Config")]
         public int? IDConfig { get; set; }
 
         public virtual Config Config { get; set; }
-
 
     }
 }
