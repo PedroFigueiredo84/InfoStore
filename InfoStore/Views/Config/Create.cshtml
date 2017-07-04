@@ -1,40 +1,51 @@
 ﻿@model InfoStore.Models.Config
+ 
+        @{
+            ViewBag.Title = "Create";
+        }
 
+        <h2>Create</h2>
 
-    @{
-        ViewBag.Title = "Create";
-    }
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    <h2>Create</h2>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>Config</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.PrecoConfig, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.PrecoConfig, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PrecoConfig, "", new { @class = "text-danger" })
+            <div class="form-horizontal">
+                <h4>Config</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PrecoConfig, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.PrecoConfig, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PrecoConfig, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-            </div>
-
+                <div class="container">
+                    @foreach (var item in Model.Prod_Disponiveis)
+                {
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"
+                                       name="ProdutosSelecionados"
+                                       value="@item.Value" /> @item.Text
+                                </label>
+                            </div>
+                    }
+                    }
+                </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Create" class="btn btn-default" />
                     </div>
                 </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
         </div>
-                    }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>
-
-    @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-    }
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }

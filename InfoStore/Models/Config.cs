@@ -2,11 +2,15 @@
 using System.Data.Entity;
 using InfoStore.Models;
 using System.Linq;
+using System.Collections;
+using System.Web.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace InfoStore.Models
 {
     public class Config
     {
+        [Key]
         public int ConfigID { get; set; }
 
         //preço de configurar
@@ -14,11 +18,14 @@ namespace InfoStore.Models
 
         // lista dos produtos
 
+        public IList<int> ProdutosSelecionados { get; set; }
+        public IList<SelectListItem> Prod_Disponiveis { get; set; }
+
         public Config()
         {
-            Produtos = new List<Produto>();
+            ProdutosSelecionados = new List<int>();
+            Prod_Disponiveis = new List<SelectListItem>();
         }
-
 
         //Custo dos produtos
 
@@ -30,11 +37,11 @@ namespace InfoStore.Models
                 return query.Sum(o => o.CustoProduto);
             }
         }
-        
 
-    //Preço dos produtos
 
-    public decimal precoProdutos
+        //Preço dos produtos
+
+        public decimal precoProdutos
         {
             get
             {

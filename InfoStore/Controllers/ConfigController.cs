@@ -39,7 +39,12 @@ namespace InfoStore.Controllers
         // GET: Config/Create
         public ActionResult Create()
         {
-            return View();
+            var model = new Config
+            {
+                Prod_Disponiveis = GetProdutos()
+            };
+
+            return View(model);
         }
 
         // POST: Config/Create
@@ -47,16 +52,31 @@ namespace InfoStore.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ConfigID,PrecoConfig")] Config config)
+        public ActionResult Create([Bind(Include = "ConfigID,PrecoConfig")] Config config, Config model)
         {
             if (ModelState.IsValid)
             {
+               //var produtos = string.Join(",",model.ProdutosSelecionados);
                 db.Configs.Add(config);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            model.Prod_Disponiveis = GetProdutos();
             return View(config);
+        }
+
+        private IList<SelectListItem> GetProdutos()
+        {
+            List<Produto> prod = new List<Produto>();
+            prod = db.Produtos.ToList();
+            List<SelectListItem> prod2 = new List<SelectListItem>();
+            foreach (var item in prod)
+            {
+                prod2.Add(new SelectListItem { Text = item.NomeProduto, Value = item.ProdutoID.ToString() });
+            }
+
+            return prod2;
+
         }
 
         // GET: Config/Edit/5
