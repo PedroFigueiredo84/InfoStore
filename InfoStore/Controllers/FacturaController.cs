@@ -56,14 +56,22 @@ namespace InfoStore.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "FacturaID,FuncionarioID,ProdutoID,ConfigID,Quant_Prod,Quant_Config")] Factura factura)
         {
+            //nao esta a reconhecer estas compras....
+            List<Compra> Compras_produto = db.Compras.Where(Compra => Compra.ProdutoID == factura.ProdutoID).ToList();
+            int Compra_produto = Compras_produto.Sum(o => o.Quant);
+            List<Factura> Vendas_produto = db.Facturas.Where(Factura => Factura.ProdutoID == factura.ProdutoID).ToList();
+            int? Vendas_Quant_produto = Vendas_produto.Sum(o => o.Quant_Prod);
 
-            var Compras_produto = db.Compras.Where(Compra => Compra.ProdutoID == factura.ProdutoID);
-            var Stock_produto = Compras_produto.Sum(o => o.Quant);
+            int? Stock = Compra_produto - Vendas_Quant_produto; 
 
-            if (factura.Quant_Prod >= Stock_produto)
+            Produto produto = db.Produtos.Find(factura.ProdutoID);
+           
+
+            if (factura.Quant_Prod >= Stock)
             {
-                
-                return RedirectToAction("Stockoff");
+                TempData["message"] = "Não existe stock de " + produto.NomeProduto + " ";
+                return RedirectToAction("Create");
+
             }
 
             if (ModelState.IsValid)

@@ -8,6 +8,10 @@
     <title>@ViewBag.Title - InfoStore</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link href="~/Content/ErrorStyles.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:midnightblue">
@@ -35,6 +39,10 @@
         </div>
     </div>
     <div class="container body-content">
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-danger">@TempData["message"]</div>
+        }
         @RenderBody()
         <hr />
         <footer>
