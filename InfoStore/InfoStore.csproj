@@ -163,6 +163,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Compra.cs" />
     <Compile Include="Models\Config.cs" />
@@ -179,6 +180,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Img\clients.png" />
+    <Content Include="Img\money.png" />
+    <Content Include="Img\produtos.png" />
+    <Content Include="Img\store.gif" />
+    <Content Include="Img\tools.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -242,7 +248,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Migrations\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>
