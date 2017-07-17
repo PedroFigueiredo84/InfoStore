@@ -16,15 +16,10 @@ namespace InfoStore.Models
         //preço de configurar
         public decimal PrecoConfig { get; set; }
 
-        // lista dos produtos
-
-        public IList<int> ProdutosSelecionados { get; set; }
-        public IList<SelectListItem> Prod_Disponiveis { get; set; }
 
         public Config()
         {
-            ProdutosSelecionados = new List<int>();
-            Prod_Disponiveis = new List<SelectListItem>();
+            Produtos = new List<Produto>();
         }
 
         //Custo dos produtos

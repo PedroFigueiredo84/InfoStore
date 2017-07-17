@@ -15,6 +15,8 @@ namespace InfoStore.Controllers
     {
         private LojaDB db = new LojaDB();
 
+
+
         // GET: Config
         public ActionResult Index()
         {
@@ -39,12 +41,11 @@ namespace InfoStore.Controllers
         // GET: Config/Create
         public ActionResult Create()
         {
-            var model = new Config
-            {
-                Prod_Disponiveis = GetProdutos()
-            };
+            ConfigViewModel config = new ConfigViewModel();
+            config.Prod_Disponiveis = GetProdutos();
 
-            return View(model);
+
+            return View(config);
         }
 
         // POST: Config/Create
@@ -52,17 +53,23 @@ namespace InfoStore.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ConfigID,PrecoConfig")] Config config, Config model)
+        public ActionResult Create([Bind(Include = "PrecoConfig, ProdutosSelecionados")] ConfigViewModel ConfigViewModel)
         {
             if (ModelState.IsValid)
             {
-               //var produtos = string.Join(",",model.ProdutosSelecionados);
+                Config config = new Config();
+                config.PrecoConfig = ConfigViewModel.PrecoConfig;
+                foreach (int id in ConfigViewModel.ProdutosSelecionados)
+                {
+                    config.Produtos.Add(db.Produtos.Find(id));
+                }
+
                 db.Configs.Add(config);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            model.Prod_Disponiveis = GetProdutos();
-            return View(config);
+
+            return View(ConfigViewModel);
         }
 
         private IList<SelectListItem> GetProdutos()
